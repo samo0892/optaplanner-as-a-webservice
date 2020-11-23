@@ -1,0 +1,89 @@
+<tour>
+    <name>
+        TestTour
+    </name>
+    <assetName>assetName</assetName>
+    <totalDistance>23.0</totalDistance>
+    <totalMinutes>15</totalMinutes>
+    <truckMode>false</truckMode>
+    <stop>
+        <id>1</id>
+        <name>Beuth Hoschule</name>
+        <street>Luxemburgerstr</street>
+        <houseNo>10</houseNo>
+        <postalCode>1234</postalCode>
+        <city>Rom</city>
+        <longitude>52.545371</longitude>
+        <latitude>13.351628</latitude>
+        <radius>22.2</radius>
+        <customerNo>777</customerNo>
+        <orderNo>1113</orderNo>
+        <description>This is a description.</description>
+        <sortNo>2</sortNo>
+        <distanceFromPrevious>2</distanceFromPrevious>
+        <minutesFromPrevious>9</minutesFromPrevious>
+        <groupId>3</groupId>
+        <startAddress>false</startAddress>
+        <endAddress>false</endAddress>
+    </stop>
+    <stop>
+        <id>2</id>
+        <name>Das Schloß</name>
+        <street>Schlossstr. 34</street>
+        <houseNo>148</houseNo>
+        <postalCode>1234</postalCode>
+        <city>Madrid</city>
+        <longitude>52.458147</longitude>
+        <latitude>13.320773 </latitude>
+        <radius>22.2</radius>
+        <customerNo>777</customerNo>
+        <orderNo>1113</orderNo>
+        <description>This is a description.</description>
+        <sortNo>2</sortNo>
+        <distanceFromPrevious>1</distanceFromPrevious>
+        <minutesFromPrevious>13</minutesFromPrevious>
+        <groupId>3</groupId>
+        <startAddress>false</startAddress>
+        <endAddress>true</endAddress>
+    </stop>
+    <stop>
+        <id>0</id>
+        <name>Walther-Schreiber</name>
+        <street>Walther-Schreiber-Platz</street>
+        <houseNo>6</houseNo>
+        <postalCode>1234</postalCode>
+        <city>Madrid</city>
+        <longitude>52.466448</longitude>
+        <latitude>13.328395</latitude>
+        <radius>22.2</radius>
+        <customerNo>777</customerNo>
+        <orderNo>1113</orderNo>
+        <description>This is a description.</description>
+        <sortNo>2</sortNo>
+        <distanceFromPrevious>1</distanceFromPrevious>
+        <minutesFromPrevious>13</minutesFromPrevious>
+        <groupId>3</groupId>
+        <startAddress>false</startAddress>
+        <endAddress>true</endAddress>
+    </stop>
+    <stop>
+        <id>3</id>
+        <name>Flughafen Berlin-Tegel</name>
+        <street>Zufahrt zum Flughafen Tegel</street>
+        <houseNo>0</houseNo>
+        <postalCode>1234</postalCode>
+        <city>Madrid</city>
+        <longitude>52.558722</longitude>
+        <latitude>13.288977</latitude>
+        <radius>22.2</radius>
+        <customerNo>777</customerNo>
+        <orderNo>1113</orderNo>
+        <description>This is a description.</description>
+        <sortNo>2</sortNo>
+        <distanceFromPrevious>1</distanceFromPrevious>
+        <minutesFromPrevious>13</minutesFromPrevious>
+        <groupId>3</groupId>
+        <startAddress>false</startAddress>
+        <endAddress>true</endAddress>
+    </stop>
+</tour>

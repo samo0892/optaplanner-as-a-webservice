@@ -1,0 +1,22 @@
+CREATE TABLE IF NOT EXISTS stop (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    minOccurs BOOLEAN,
+    maxOccurs BOOLEAN,
+    name VARCHAR(255),
+    street VARCHAR(255),
+    houseNo VARCHAR(255),
+    postalCode VARCHAR(255),
+    city VARCHAR(255),
+    longitude DOUBLE,
+    latitude DOUBLE,
+    radius DOUBLE,
+    customerNo VARCHAR(255),
+    orderNo VARCHAR(255),
+    description VARCHAR(255),
+    isStartAdress BOOLEAN,
+    isEndAdress BOOLEAN,
+    sortNo INTEGER,
+    distanceFromPrevious DOUBLE,
+    minutesFromPrevious INTEGER,
+    groupId INTEGER
+);

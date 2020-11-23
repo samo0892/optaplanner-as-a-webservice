@@ -1,0 +1,8 @@
+<configuration>
+
+    <logger name="org.optaplanner" level="debug"/>
+
+
+
+</configuration>
+

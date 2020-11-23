@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: com.baldede.postman.StaticScoreTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 2.047 s <<< FAILURE! - in com.baldede.postman.StaticScoreTest
+testDistanceFromPreviousRule(com.baldede.postman.StaticScoreTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalArgumentException: The sorterManner (DECREASING_DIFFICULTY) on entity class (class com.baldede.postman.domain.Stop) fails because that entity class's @PlanningEntity annotation does not declare any difficulty comparison.
+	at com.baldede.postman.StaticScoreTest.<init>(StaticScoreTest.java:15)
+
+testWithTwoStops(com.baldede.postman.StaticScoreTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalArgumentException: The sorterManner (DECREASING_DIFFICULTY) on entity class (class com.baldede.postman.domain.Stop) fails because that entity class's @PlanningEntity annotation does not declare any difficulty comparison.
+	at com.baldede.postman.StaticScoreTest.<init>(StaticScoreTest.java:15)
+

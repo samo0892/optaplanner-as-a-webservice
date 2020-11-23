@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tour>
+    <name>
+        TestTour
+    </name>
+    <assetName>assetName</assetName>
+    <totalDistance>23.0</totalDistance>
+    <totalMinutes>15</totalMinutes>
+    <truckMode>false</truckMode>
+    <stop>
+        <id>0</id>
+        <name>Zu Hause</name>
+        <street>Rubensstr</street>
+        <houseNo>105</houseNo>
+        <postalCode>1234</postalCode>
+        <city>Berlin</city>
+        <longitude>52.465423</longitude>
+        <latitude>13.344653</latitude>
+        <radius>22.2</radius>
+        <customerNo>777</customerNo>
+        <orderNo>1113</orderNo>
+        <description>This is a description.</description>
+        <sortNo>2</sortNo>
+        <distanceFromPrevious>4</distanceFromPrevious>
+        <minutesFromPrevious>15</minutesFromPrevious>
+        <groupId>3</groupId>
+        <startAddress>true</startAddress>
+        <endAddress>false</endAddress>
+    </stop>
+    <stop>
+        <id>1</id>
+        <name>Akquinet</name>
+        <street>Bülowstr</street>
+        <houseNo>66</houseNo>
+        <postalCode>1234</postalCode>
+        <city>Paris</city>
+        <longitude>52.496474</longitude>
+        <latitude>13.368373</latitude>
+        <radius>22.2</radius>
+        <customerNo>777</customerNo>
+        <orderNo>1113</orderNo>
+        <description>This is a description.</description>
+        <sortNo>2</sortNo>
+        <distanceFromPrevious>3</distanceFromPrevious>
+        <minutesFromPrevious>12</minutesFromPrevious>
+        <groupId>3</groupId>
+        <startAddress>false</startAddress>
+        <endAddress>false</endAddress>
+    </stop>
+    <stop>
+        <id>2</id>
+        <name>Kleistpark</name>
+        <street>Luxemburgerstr</street>
+        <houseNo>10</houseNo>
+        <postalCode>1234</postalCode>
+        <city>Rom</city>
+        <longitude>52.491762</longitude>
+        <latitude>13.360305</latitude>
+        <radius>22.2</radius>
+        <customerNo>777</customerNo>
+        <orderNo>1113</orderNo>
+        <description>This is a description.</description>
+        <sortNo>2</sortNo>
+        <distanceFromPrevious>2</distanceFromPrevious>
+        <minutesFromPrevious>9</minutesFromPrevious>
+        <groupId>3</groupId>
+        <startAddress>false</startAddress>
+        <endAddress>false</endAddress>
+    </stop>
+    <stop>
+        <id>3</id>
+        <name>Innsbrucker Platz</name>
+        <street>Berlinerstr</street>
+        <houseNo>148</houseNo>
+        <postalCode>1234</postalCode>
+        <city>Madrid</city>
+        <longitude>52.478353</longitude>
+        <latitude>13.344153</latitude>
+        <radius>22.2</radius>
+        <customerNo>777</customerNo>
+        <orderNo>1113</orderNo>
+        <description>This is a description.</description>
+        <sortNo>2</sortNo>
+        <distanceFromPrevious>1</distanceFromPrevious>
+        <minutesFromPrevious>13</minutesFromPrevious>
+        <groupId>3</groupId>
+        <startAddress>false</startAddress>
+        <endAddress>true</endAddress>
+    </stop>
+</tour>

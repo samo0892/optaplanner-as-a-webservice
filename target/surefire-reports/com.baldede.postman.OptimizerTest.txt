@@ -1,0 +1,19 @@
+-------------------------------------------------------------------------------
+Test set: com.baldede.postman.OptimizerTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.032 s <<< FAILURE! - in com.baldede.postman.OptimizerTest
+test(com.baldede.postman.OptimizerTest)  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.NoSuchMethodError: com.baldede.postman.domain.Location.setDistanceFromPrevious(D)V
+	at com.baldede.postman.OptimizerTest.loadTestData(OptimizerTest.java:46)
+	at com.baldede.postman.OptimizerTest.test(OptimizerTest.java:113)
+
+testLoadTestData(com.baldede.postman.OptimizerTest)  Time elapsed: 0.012 s  <<< ERROR!
+java.lang.NoSuchMethodError: com.baldede.postman.domain.Location.setDistanceFromPrevious(D)V
+	at com.baldede.postman.OptimizerTest.loadTestData(OptimizerTest.java:46)
+	at com.baldede.postman.OptimizerTest.testLoadTestData(OptimizerTest.java:119)
+
+solvedSolutionIsNotNull(com.baldede.postman.OptimizerTest)  Time elapsed: 0.018 s  <<< ERROR!
+java.lang.NoSuchMethodError: com.baldede.postman.domain.Location.setDistanceFromPrevious(D)V
+	at com.baldede.postman.OptimizerTest.loadTestData(OptimizerTest.java:46)
+	at com.baldede.postman.OptimizerTest.solvedSolutionIsNotNull(OptimizerTest.java:148)
+

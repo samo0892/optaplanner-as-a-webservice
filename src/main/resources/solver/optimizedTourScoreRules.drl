@@ -1,0 +1,32 @@
+import org.optaplanner.core.api.score.buildin.hardsoftdouble.HardSoftDoubleScoreHolder;
+import org.optaplanner.core.api.score.buildin.simplelong.SimpleLongScoreHolder;
+
+
+import com.baldede.postman.domain.TourSolution
+import com.baldede.postman.domain.Tour
+import com.baldede.postman.domain.Stop
+import com.baldede.postman.domain.Domicile
+
+
+global  SimpleLongScoreHolder scoreHolder;
+
+// ############################################################################
+// Soft constraints
+// ############################################################################
+
+
+rule "distanceToPreviousStandstill"
+    when
+        $visit : Stop(previousStandstill != null, $distanceFromPreviousStandstill : distanceFromPreviousStandstill)
+    then
+        scoreHolder.addConstraintMatch(kcontext, - $distanceFromPreviousStandstill);
+end
+
+rule "distanceFromLastVisitToDomicile"
+    when
+        $stop : Stop(previousStandstill != null)
+        not Stop(previousStandstill == $stop)
+        $domicile : Domicile()
+    then
+        scoreHolder.addConstraintMatch(kcontext, - $stop.getDistanceTo($domicile));
+end
