@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,7 +31,7 @@ public class OsrmService {
     StringBuilder stringBuilder = new StringBuilder();
 
 
-    public void getDistanceMatrix(List<Location> locationList) throws JSONException, IOException {
+    public List<Object> getDistanceMatrix(List<Location> locationList) throws JSONException, IOException {
 
         try {
                 logger.info("getDistanceMatrix started");
@@ -65,6 +66,6 @@ public class OsrmService {
         } catch (JSONException e) {
             logger.severe(e.getMessage());
         }
-        Collections.emptyList();
+        return Collections.emptyList();
     }
 }

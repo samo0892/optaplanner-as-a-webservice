@@ -224,7 +224,7 @@ public class XMLRestController {
         //Connecting to OSRM API for a duration matrix. This API computes the duration of the fastest route between all pairs of supplied coordinates.
         //Make a list from the JSONarray
         OsrmService osrmService = new OsrmService();
-        list = osrmService.getDistanceMatrix(locationList);
+        list = (ArrayList<Object>) osrmService.getDistanceMatrix(locationList);
 
         //Creates a list of the locations the distances of the matrix
         double travelDistance;
