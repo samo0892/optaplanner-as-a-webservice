@@ -1,15 +1,12 @@
 package com.baldede.postman.controller;
 
 import com.baldede.postman.app.StopRepository;
-import com.baldede.postman.domain.*;
+import com.baldede.postman.domain.Stop;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import javax.script.ScriptException;
-import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,13 +19,11 @@ public class StopRetrieverController {
 
     @GetMapping(path = "/stops")
     public List<Stop> findAll() {
-        System.out.println("HERE: " + stopRepository);
         return stopRepository.findAll();
     }
 
     @PostMapping(path = "/setstop",  consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
     public Stop create(@RequestBody Stop stop) {
-
         Stop newStop = new Stop();
         newStop = stop;
         return stopRepository.save(newStop);
@@ -36,7 +31,6 @@ public class StopRetrieverController {
 
     @DeleteMapping(path = "/delete/stop/{id}")
     public void deleteStop(@PathVariable("id") int id) {
-
         stopRepository.deleteById((long) id);
     }
 

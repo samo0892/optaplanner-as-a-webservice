@@ -92,7 +92,6 @@ public class Stop implements Standstill {
      * @return a positive number, the distance multiplied by 1000 to avoid floating point arithmetic rounding errors
      */
     public long getDistanceFrom(Standstill standstill) {
-
         return standstill.getLocation().getDistanceTo(location);
     }
 

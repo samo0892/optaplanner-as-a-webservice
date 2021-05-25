@@ -8,7 +8,7 @@ public class Location  extends AbstractPersistable {
 
     protected double latitude;
     protected double longitude;
-    protected Map<Location, Double> travelDistanceMap;
+    private Map<Location, Double> travelDistanceMap;
     private String name;
 
 
@@ -34,7 +34,7 @@ public class Location  extends AbstractPersistable {
 
             return 0L;
         }
-        double distance = travelDistanceMap.get((Location) location);
+        double distance = travelDistanceMap.get(location);
         // Multiplied by 1000 to avoid floating point arithmetic rounding errors
         return (long) (distance * 1000.0 + 0.5);
     }
@@ -78,16 +78,6 @@ public class Location  extends AbstractPersistable {
     public void setName(String name) {
         this.name = name;
     }
-
-
-
-
-//
-//    public long getDistanceTo(Location location) {
-//            double distance = getAirDistanceDoubleTo(location);
-//            // Multiplied by 1000 to avoid floating point arithmetic rounding errors
-//            return (long) (distance * 1000.0 + 0.5);
-//    }
 
     public double getAirDistanceDoubleTo(Location location) {
         // Implementation specified by TSPLIB http://www2.iwr.uni-heidelberg.de/groups/comopt/software/TSPLIB95/

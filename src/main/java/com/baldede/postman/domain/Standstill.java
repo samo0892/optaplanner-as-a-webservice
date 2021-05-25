@@ -1,11 +1,8 @@
 package com.baldede.postman.domain;
 
- import com.baldede.postman.domain.Location;
-
- import javax.xml.bind.JAXBContext;
- import javax.xml.bind.annotation.XmlSeeAlso;
- import javax.xml.bind.annotation.adapters.XmlAdapter;
- import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.adapters.XmlAdapter;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlSeeAlso({ Stop.class })
 @XmlJavaTypeAdapter(XmlAdapter.class)

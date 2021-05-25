@@ -17,18 +17,14 @@ public class XMLService {
 
 
     public Tour parseStop(String filePath) {
-
         try {
             File file = new File (filePath);
-
             JAXBContext jaxbContext = JAXBContext.newInstance(Tour.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             tour = (Tour) jaxbUnmarshaller.unmarshal(file);
-
         } catch (Exception ex) {
             logger.error(ex.getMessage());
         }
-
         return tour;
     }
 }

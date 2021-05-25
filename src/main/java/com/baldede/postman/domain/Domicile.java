@@ -1,6 +1,5 @@
 package com.baldede.postman.domain;
 
-import com.baldede.postman.domain.*;
 import com.baldede.postman.persistence.AbstractPersistable;
 
 public class Domicile extends AbstractPersistable implements Standstill {
@@ -24,10 +23,6 @@ public class Domicile extends AbstractPersistable implements Standstill {
     public void setName(String name) {
         this.name = name;
     }
-
-    // ************************************************************************
-    // Complex methods
-    // ************************************************************************
 
     /**
      * @param standstill never null

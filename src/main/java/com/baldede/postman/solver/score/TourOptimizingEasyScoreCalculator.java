@@ -1,6 +1,5 @@
 package com.baldede.postman.solver.score;
 
-//import com.baldede.postman.domain.Domicile;
 import com.baldede.postman.domain.Domicile;
 import com.baldede.postman.domain.Standstill;
 import com.baldede.postman.domain.Stop;

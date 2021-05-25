@@ -6,7 +6,6 @@ import com.thoughtworks.xstream.annotations.XStreamConverter;
 import org.optaplanner.core.api.domain.solution.PlanningEntityCollectionProperty;
 import org.optaplanner.core.api.domain.solution.PlanningScore;
 import org.optaplanner.core.api.domain.solution.PlanningSolution;
-import org.optaplanner.core.api.domain.solution.drools.ProblemFactCollectionProperty;
 import org.optaplanner.core.api.domain.solution.drools.ProblemFactProperty;
 import org.optaplanner.core.api.domain.valuerange.ValueRangeProvider;
 import org.optaplanner.core.api.score.buildin.simplelong.SimpleLongScore;
@@ -35,7 +34,6 @@ public class TourSolution extends AbstractPersistable {
         this.tourList = tourList;
     }
 
-    //@ProblemFactCollectionProperty
     public List<Location> getLocationList() {
         return locationList;
     }
@@ -71,10 +69,6 @@ public class TourSolution extends AbstractPersistable {
     public void setScore(SimpleLongScore score) {
         this.score = score;
     }
-
-    // ************************************************************************
-    // Complex methods
-    // ************************************************************************
 
     @ValueRangeProvider(id = "domicileRange")
     public List<Domicile> getDomicileRange() {
