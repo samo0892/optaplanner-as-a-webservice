@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.URL;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,10 +22,12 @@ import java.util.logging.Logger;
 @Service
 public class OsrmService {
 
-    final static String osrmApi = "http://router.project-osrm.org/table/v1/driving/";
+    final static String OSRM_API = "http://router.project-osrm.org/table/v1/driving/";
+
     String coordinates = "";
     String urlToOsrmApi = "";
     JSONObject json = null;
+
     Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     StringBuilder stringBuilder = new StringBuilder();
 
@@ -43,7 +44,7 @@ public class OsrmService {
                 coordinates = coordinates.substring(0, coordinates.length() - 1);
 
                 //creating a new url with the api url of osrm and the coordinates
-                urlToOsrmApi = osrmApi + coordinates;
+                urlToOsrmApi = OSRM_API + coordinates;
 
                 //connecting to the osrm api and getting the durations from the response
                 json = new JSONObject(IOUtils.toString( new URL(urlToOsrmApi), StandardCharsets.UTF_8));
@@ -61,11 +62,10 @@ public class OsrmService {
                 urlToOsrmApi = "";
                 json = null;
                 return list;
-        } catch (IOException e) {
-            logger.severe(e.getMessage());
-        } catch (JSONException e) {
+        } catch (IOException|JSONException e) {
             logger.severe(e.getMessage());
         }
+
         return Collections.emptyList();
     }
 }

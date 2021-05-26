@@ -3,10 +3,8 @@ package com.baldede.postman.controller;
 import com.baldede.postman.domain.*;
 import com.baldede.postman.service.OsrmService;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.optaplanner.core.api.solver.Solver;
 import org.optaplanner.core.api.solver.SolverFactory;
 import org.optaplanner.core.api.solver.event.BestSolutionChangedEvent;
@@ -17,28 +15,27 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.nio.charset.Charset;
 import java.util.*;
 import java.util.logging.FileHandler;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
 @RestController
 public class XMLRestController {
+
+    final static String PATH_TO_FILE = "/Users/baldede/Documents/workspace/postman/src/main/resources/stop.xml";
     TourSolution ts;
     List<Location> locationList = new ArrayList<>();
     ArrayList<Object> list = new ArrayList<>();
@@ -46,9 +43,10 @@ public class XMLRestController {
     FileHandler fh = null;
     Solver<TourSolution> solver;
     String bestSolution = "";
+   StringBuilder stringBuilder = new StringBuilder();
 
 
-    @RequestMapping(path = "/login", method = RequestMethod.GET)
+    @GetMapping(path = "/login")
     public String listUser() {
         logger.info("login started");
         return "Login successfully!";
@@ -59,10 +57,8 @@ public class XMLRestController {
     @PostMapping(value = "/start-optimizer", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
     public String getOptimizer(@RequestBody Tour tour) throws JSONException {
         logger.info("optimizer started");
-        //System.out.println("optimizer started");
         List<Tour> tours = Arrays.asList(tour);
         List<Stop> stops = tour.getStops();
-        TourSolution solvedTourSolution;
 
         try {
             createTourSolutionWithData(tours, stops);
@@ -73,13 +69,12 @@ public class XMLRestController {
             solver = solverFactory.buildSolver();
             solver.addEventListener(bestSolutionListener);
             TourSolution unsolvedTourSolution = ts;
-            solvedTourSolution = solver.solve(unsolvedTourSolution);
+            solver.solve(unsolvedTourSolution);
 
         } catch (IOException e) {
-            String errorMessage = "Es wurden zu viele Anfragen an den Server gesendet. Versuchen Sie es später bitte noch mal! (HTTP-Code: 429)";
-            System.out.println(errorMessage);
+            final String ERROR_MESSAGE = "Es wurden zu viele Anfragen an den Server gesendet. Versuchen Sie es später bitte noch mal! (HTTP-Code: 429)";
             logger.severe(e.getMessage());
-            return errorMessage;
+            return ERROR_MESSAGE;
         }
 
         return bestSolution;
@@ -88,9 +83,8 @@ public class XMLRestController {
     public SolverEventListener bestSolutionListener = new SolverEventListener() {
         @Override
         public void bestSolutionChanged(BestSolutionChangedEvent bestSolutionChangedEvent) {
-            System.out.println("BETTER SOLUTION FOUND!");
             TourSolution newSolution = (TourSolution) bestSolutionChangedEvent.getNewBestSolution();
-            System.out.println("BETTERSCORE: " + newSolution.getScore());
+            logger.info("BETTERSCORE: " + newSolution.getScore());
             bestSolution = getNewSolution(newSolution);
         }
     };
@@ -104,8 +98,7 @@ public class XMLRestController {
             Standstill curAppointment;
             curAppointment = attendant.getPreviousStandstill();
             attendant.setId(appointmentCounter);
-            newStops += curAppointment;
-            System.out.println(newStops);
+            stringBuilder.append(curAppointment);
             appointmentCounter++;
         }
 
@@ -122,7 +115,7 @@ public class XMLRestController {
     }
 
 
-    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    @PostMapping(value = "/logout")
     public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         logger.info("logout started");
@@ -136,12 +129,10 @@ public class XMLRestController {
 
     @PreAuthorize("hasRole('USER')")
     @GetMapping(value = "/getstops", produces = MediaType.APPLICATION_XML_VALUE)
-    public String getCustomerToo() throws JAXBException, IOException {
-
+    public String getCustomerToo() throws IOException {
         logger.info("getting all stops");
-        File file = new File("/Users/baldede/Documents/workspace/postman/src/main/resources/stop.xml");
+        File file = new File(PATH_TO_FILE);
         String content = FileUtils.readFileToString(file);
-        System.out.println(content);
 
         return content;
     }
@@ -172,7 +163,6 @@ public class XMLRestController {
             Location location = new Location();
             location.setLongitude(s.getLongitude());
             location.setLatitude(s.getLatitude());
-            //location.setDistanceFromPrevious(s.getDistanceFromPrevious());
             locationList.add(location);
             s.setLocation(location);
         }
@@ -191,7 +181,7 @@ public class XMLRestController {
         return ts;
     }
 
-    private void readTspLibSolution() throws IOException, JSONException {
+    private void readTspLibSolution() {
 
         logger.info("readTspLibSolution started");
         int visitListSize = ts.getStopList().size();
@@ -200,7 +190,6 @@ public class XMLRestController {
             idToStopMap.put(stop.getId(), stop);
         }
         Standstill previousStandstill = ts.getDomicile();
-        Stop nextStop = null;
         for (int i = 0; i < visitListSize; i++) {
             long stopId = i;
             Stop stop = idToStopMap.get(stopId);
@@ -212,8 +201,8 @@ public class XMLRestController {
             }
             stop.setPreviousStandstill(previousStandstill);
             previousStandstill = stop;
-            for (int j = 1; j < visitListSize; j++) {
-                Stop stop1 = idToStopMap.get(j);
+            for (long j = 1; j < visitListSize; j++) {
+                idToStopMap.get(j);
             }
         }
     }
@@ -230,7 +219,7 @@ public class XMLRestController {
         double travelDistance;
         int locationListSize = locationList.size();
         for (int i = 0; i < locationListSize; i++) {
-            Location location = (Location) locationList.get(i);
+            Location location = locationList.get(i);
             Map<Location, Double> travelDistanceMap = new LinkedHashMap<>(locationListSize);
             JSONArray array = (JSONArray) list.get(i);
             for (int j = 0; j < locationListSize; j++) {
@@ -247,8 +236,7 @@ public class XMLRestController {
                                 + ") should be zero.");
                     }
                 } else {
-
-                    Location otherLocation = (Location) locationList.get(j);
+                    Location otherLocation = locationList.get(j);
                     travelDistanceMap.put(otherLocation, travelDistance);
                 }
             }
